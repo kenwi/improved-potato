@@ -6,15 +6,19 @@
 #define UNTITLED_RENDERER_H
 
 #include "GL/glew.h"
+#include "Object.h"
 
 namespace Graphics{
-    class Renderer {
-    public:
-        Renderer();
-        ~Renderer();
+    namespace Rendering {
+        class Renderer {
+        public:
+            Renderer();
+            ~Renderer();
 
-        void Clear();
-    };
+            void Clear();
+            void Render(Object object);
+        };
+    }
 }
 
 #endif //UNTITLED_RENDERER_H

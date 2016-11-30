@@ -8,13 +8,13 @@ int main()
 {
     using namespace std;
     using namespace Graphics;
+    using namespace Graphics::Rendering;
 
     Renderer renderer;
-    Window window("Test", 100, 100);
+    Window window("Test", 1024, 768);
     while(window.Running()) {
         renderer.Clear();
         window.Update();
     }
-
     return 0;
 }

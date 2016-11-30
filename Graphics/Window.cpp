@@ -7,11 +7,11 @@ namespace Graphics {
 
     using namespace std;
 
-    Window::Window(const char *title, int height, int width) {
+    Window::Window(const char *title, int width, int height) {
         cout << "Calling constructor on Window" << endl;
-        _height = height;
-        _width = width;
         _title = title;
+        _width = width;
+        _height = height;
 
         if(!Initialize()) {
             cout << "Unable to initialize" << endl;
