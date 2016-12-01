@@ -25,6 +25,8 @@ namespace Graphics {
     }
 
     bool Window::Initialize() {
+        // Use modern approach
+        glewExperimental = true;
         if(!glfwInit()) {
             cout << "Failed to init GLFW" << endl;
             return false;
@@ -61,7 +63,7 @@ namespace Graphics {
     }
 
     bool Window::InitGLEW() {
-        return (glewInit() != GLEW_OK) ? false : true;
+        return glewInit() == GLEW_OK;
     }
 
     bool Window::Running() {
