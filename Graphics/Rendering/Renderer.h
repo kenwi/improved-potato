@@ -5,7 +5,7 @@
 #ifndef UNTITLED_RENDERER_H
 #define UNTITLED_RENDERER_H
 
-#include "GL/glew.h"
+#include "../../libs.h"
 #include "Object.h"
 
 namespace Graphics{

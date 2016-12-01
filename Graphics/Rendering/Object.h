@@ -5,7 +5,9 @@
 #ifndef UNTITLED_OBJECT_H
 #define UNTITLED_OBJECT_H
 
-#include <iostream>
+//#include <iostream>
+
+#include "../../libs.h"
 
 using namespace std;
 namespace Graphics {

@@ -5,9 +5,7 @@
 #ifndef UNTITLED_WINDOW_H
 #define UNTITLED_WINDOW_H
 
-#include <GL/glew.h>
-#include <GLFW/glfw3.h>
-#include <iostream>
+#include "../libs.h"
 
 namespace Graphics {
     class Window {
@@ -26,6 +24,7 @@ namespace Graphics {
         bool Running();
         void Update();
         void Terminate();
+        void SetOpenGLViewPort();
 
     private:
         bool Initialize();
