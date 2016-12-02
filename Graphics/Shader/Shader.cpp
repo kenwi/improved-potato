@@ -67,6 +67,7 @@ bool Shader::LinkShader(GLuint vertexShaderId, GLuint fragmentShaderId) {
     glAttachShader(shaderProgram, fragmentShaderId);
     glLinkProgram(shaderProgram);
 
+    cout << "Checking shader program " << shaderProgram << endl;
     if(!CheckStatus(GL_LINK_STATUS, shaderProgram)) {
         cout << "Status for shader " << shaderProgram << " is ERROR" << endl;
         return false;
