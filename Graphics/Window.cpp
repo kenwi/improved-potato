@@ -44,6 +44,9 @@ namespace Graphics {
         cout << "Enabling OpenGL core profile" << endl;
         glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
+        cout << "Disabling windows resizing" << endl;
+        glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
+
         if(nullptr == (_windowPtr = glfwCreateWindow(_width, _height, _title, nullptr, nullptr))) {
             cout << "Failed to create window" << endl;
             return false;
@@ -69,12 +72,16 @@ namespace Graphics {
     }
 
     bool Window::Running() {
-        return !glfwWindowShouldClose(_windowPtr);
+        if(glfwWindowShouldClose(_windowPtr)) {
+            cout << "Caught termination singal" << endl;
+            return false;
+        }
+        return true;
     }
 
     void Window::Update() {
         // Poll for events like keyboard input or mouse movement
-        glfwPollEvents();
+        //glfwPollEvents();
 
         // Swap the color buffer and output it to the screen (double buffering)
         glfwSwapBuffers(_windowPtr);

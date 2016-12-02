@@ -55,6 +55,7 @@ bool Shader::AttachSourceAndCompile(GLenum shaderId, const GLchar *shaderSource)
         cout << "Status for shader " << shaderId << " is OK" << endl;
         return true;
     }
+    cout << "Status for shader " << shaderId << " is ERROR" << endl;
     return false;
 }
 
@@ -66,11 +67,12 @@ bool Shader::LinkShader(GLuint vertexShaderId, GLuint fragmentShaderId) {
     glAttachShader(shaderProgram, fragmentShaderId);
     glLinkProgram(shaderProgram);
 
-    // Check it's status
-    if(CheckStatus(GL_LINK_STATUS, shaderProgram)) {
-        cout << "Status for shader " << shaderProgram << " is OK" << endl;
-        this->ShaderProgram = shaderProgram;
+    if(!CheckStatus(GL_LINK_STATUS, shaderProgram)) {
+        cout << "Status for shader " << shaderProgram << " is ERROR" << endl;
+        return false;
     }
+    cout << "Status for shader " << shaderProgram << " is OK" << endl;
+    this->ShaderProgram = shaderProgram;
 
     // Remove shader after it's been linked to the shader program
     cout << "Deleting vertex shader " << vertexShaderId << endl;
