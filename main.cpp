@@ -15,10 +15,19 @@ int main()
     Renderer renderer;
     Window window("Test", 1024, 768);
     Graphics::Shader::Shader shader;
+    Object object;
 
     while(window.Running() && !shader.CompileError) {
         renderer.Clear();
+
+        glUseProgram(shader.ShaderProgram);
+        glBindVertexArray(object.VAO);
+        glDrawArrays(GL_TRIANGLES, 0, 3);
+        glBindVertexArray(0);
+
         window.Update();
     }
+    glDeleteVertexArrays(1, &object.VAO);
+    glDeleteBuffers(1, &object.VBO);
     return 0;
 }

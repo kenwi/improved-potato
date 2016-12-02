@@ -7,8 +7,6 @@
 namespace Graphics {
     namespace Rendering {
         Renderer::Renderer() {
-            cout << "Clear color" << endl;
-
         }
 
         Renderer::~Renderer() {

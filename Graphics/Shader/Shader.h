@@ -17,11 +17,12 @@ namespace Graphics {
             Shader();
             ~Shader();
             bool CompileError;
+            GLuint ShaderProgram;
 
         private:
             GLuint CreateShaderObject(GLenum type);
             bool AttachSourceAndCompile(GLenum shaderId, const GLchar *shaderSource );
-            bool LinkShader(GLuint shaderId);
+            bool LinkShader(GLuint vertexShaderId, GLuint fragmentShaderId);
             bool CheckStatus(GLenum status, GLuint shaderId);
         };
     }

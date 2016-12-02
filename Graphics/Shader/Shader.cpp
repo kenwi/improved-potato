@@ -22,18 +22,17 @@ const GLchar* fragmentShaderSource = "#version 330 core\n"
 
 Shader::Shader() {
     cout << "Creating vertex shader" << endl;
-    GLuint shaderId = CreateShaderObject(GL_VERTEX_SHADER);
-    if(AttachSourceAndCompile(shaderId, vertexShaderSource)) {
+    GLuint vertexShader = CreateShaderObject(GL_VERTEX_SHADER);
+    if(AttachSourceAndCompile(vertexShader, vertexShaderSource)) {
         cout << "Successfully attached vertex shader source" << endl;
     }
-    LinkShader(shaderId);
-
     cout << "Creating fragment shader" << endl;
-    shaderId = CreateShaderObject(GL_FRAGMENT_SHADER);
-    if(AttachSourceAndCompile(shaderId, fragmentShaderSource)) {
+    GLuint fragmentShader = CreateShaderObject(GL_FRAGMENT_SHADER);
+    if(AttachSourceAndCompile(fragmentShader, fragmentShaderSource)) {
         cout << "Successfully attached fragment shader source" << endl;
     }
-    LinkShader(shaderId);
+
+    LinkShader(vertexShader, fragmentShader);
 }
 
 Shader::~Shader() {
@@ -47,7 +46,7 @@ GLuint Shader::CreateShaderObject(GLenum type) {
 
 bool Shader::AttachSourceAndCompile(GLenum shaderId, const GLchar *shaderSource) {
     // Attach the shader source to the shader object
-    glShaderSource(shaderId, 1, &shaderSource, nullptr);
+    glShaderSource(shaderId, 1, &shaderSource, NULL);
 
     // And compile that shit
     glCompileShader(shaderId);
@@ -59,21 +58,26 @@ bool Shader::AttachSourceAndCompile(GLenum shaderId, const GLchar *shaderSource)
     return false;
 }
 
-bool Shader::LinkShader(GLuint shaderId) {
-    cout << "Linking shader " << shaderId << endl;
+bool Shader::LinkShader(GLuint vertexShaderId, GLuint fragmentShaderId) {
+    cout << "Linking vertex shader " << vertexShaderId << " and fragment shader " << fragmentShaderId <<  endl;
     // Link the shader
-    GLuint programId = glCreateProgram();
-    glAttachShader(shaderId, programId);
-    glLinkProgram(shaderId);
+    GLuint shaderProgram = glCreateProgram();
+    glAttachShader(shaderProgram, vertexShaderId);
+    glAttachShader(shaderProgram, fragmentShaderId);
+    glLinkProgram(shaderProgram);
 
     // Check it's status
-    if(CheckStatus(GL_LINK_STATUS, shaderId)) {
-        cout << "Status for shader " << shaderId << " is OK" << endl;
+    if(CheckStatus(GL_LINK_STATUS, shaderProgram)) {
+        cout << "Status for shader " << shaderProgram << " is OK" << endl;
+        this->ShaderProgram = shaderProgram;
     }
 
     // Remove shader after it's been linked to the shader program
-    cout << "Deleting shader " << shaderId << endl;
-    glDeleteShader(shaderId);
+    cout << "Deleting vertex shader " << vertexShaderId << endl;
+    glDeleteShader(vertexShaderId);
+    cout << "Deleting fragment shader " << fragmentShaderId << endl;
+    glDeleteShader(fragmentShaderId);
+
     return true;
 }
 
