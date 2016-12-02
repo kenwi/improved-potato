@@ -10,17 +10,19 @@
 namespace Graphics {
     namespace Shader {
         class Shader {
-
         private:
-            GLuint _id;
+            GLuint _shaderId;
 
         public:
             Shader();
             ~Shader();
+            bool CompileError;
 
         private:
             GLuint CreateShaderObject(GLenum type);
-            bool AttachSourceAndCompile(GLenum shaderID, const GLchar *shaderSource );
+            bool AttachSourceAndCompile(GLenum shaderId, const GLchar *shaderSource );
+            bool LinkShader(GLuint shaderId);
+            bool CheckStatus(GLenum status, GLuint shaderId);
         };
     }
 }

@@ -3,7 +3,7 @@ project(improved-potato)
 
 set(CMAKE_CXX_STANDARD 11)
 
-set(SOURCE_FILES main.cpp Graphics/Window.h Graphics/Window.cpp Graphics/Rendering/Renderer.cpp Graphics/Rendering/Renderer.h Graphics/Rendering/Object.h Graphics/Rendering/Primitives/Shape.cpp Graphics/Rendering/Primitives/Shape.h libs.h)
+set(SOURCE_FILES main.cpp Graphics/Window.h Graphics/Window.cpp Graphics/Rendering/Renderer.cpp Graphics/Rendering/Renderer.h Graphics/Rendering/Object.h Graphics/Rendering/Primitives/Shape.cpp Graphics/Rendering/Primitives/Shape.h libs.h Graphics/Shader/Shader.cpp Graphics/Shader/Shader.h)
 add_executable(improved-potato ${SOURCE_FILES})
 
 find_package(GLEW REQUIRED)

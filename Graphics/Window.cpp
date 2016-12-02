@@ -8,7 +8,9 @@ namespace Graphics {
     using namespace std;
 
     Window::Window(const char *title, int width, int height) {
-        cout << "Calling constructor on Window. Requesting size = " << width << "x" << height << " title = " << title  << endl;
+        cout << "Calling constructor on Window. Requesting size = "
+             << width << "x" << height << " title = " << title  << endl;
+
         _title = title;
         _width = width;
         _height = height;
