@@ -41,7 +41,7 @@ Shader::~Shader() {
 }
 
 GLuint Shader::CreateShaderObject(GLenum type) {
-    // Create a shader objet and return it's id
+    // Create a shader object and return it's id
     return glCreateShader(type);
 }
 
@@ -66,10 +66,12 @@ bool Shader::LinkShader(GLuint shaderId) {
     glAttachShader(shaderId, programId);
     glLinkProgram(shaderId);
 
+    // Check it's status
     if(CheckStatus(GL_LINK_STATUS, shaderId)) {
         cout << "Status for shader " << shaderId << " is OK" << endl;
     }
 
+    // Remove shader after it's been linked to the shader program
     cout << "Deleting shader " << shaderId << endl;
     glDeleteShader(shaderId);
     return true;
