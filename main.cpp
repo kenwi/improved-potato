@@ -1,3 +1,6 @@
+#ifndef  __MAIN_CPP__
+#define __MAIN_CPP__
+
 #include "Graphics/Window.h"
 #include "Graphics/Shader/Shader.h"
 #include "Graphics/Rendering/Renderer.h"
@@ -19,6 +22,7 @@ int main()
     Shader::Shader shader;
     Object object;
     Utils::Timer timer;
+    long fps;
 
     cout << "Entering game loop" << endl;
     while(window.Running() && !shader.CompileError) {
@@ -31,7 +35,7 @@ int main()
         glBindVertexArray(0);
 
         window.Update();
-        int fps;
+
         if((fps = timer.GetCurrentFPS()) > 0)
             cout << "FPS = " << fps << endl;
     }
@@ -39,3 +43,5 @@ int main()
     glDeleteBuffers(1, &object.VBO);
     return 0;
 }
+
+#endif

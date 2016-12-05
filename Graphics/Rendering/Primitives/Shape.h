@@ -14,10 +14,10 @@ namespace Graphics {
             public:
                 Shape();
                 ~Shape();
-                //const GLUSshape& Get() const;
+                const GLUSshape& Get() const;
 
             protected:
-                //GLUSshape shape;
+                GLUSshape shape;
             };
         }
     }

@@ -5,11 +5,11 @@
 #ifndef UNTITLED_LIBS_H
 #define UNTITLED_LIBS_H
 
-//#include "GLUS/src/GL/glus.h"
-//#include <GLUS/src/GL/glus.h>
-
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
+//##include "GLUS/src/GL/glus.h"
+#include <GL/glus.h>
+
 
 #include <iostream>
 
