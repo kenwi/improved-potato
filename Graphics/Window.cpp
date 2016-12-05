@@ -28,7 +28,7 @@ namespace Graphics {
 
     bool Window::Initialize() {
         // Use modern approach
-        glewExperimental = true;
+        glewExperimental = GL_TRUE;
         if(!glfwInit()) {
             cout << "Failed to init GLFW" << endl;
             return false;
@@ -80,9 +80,6 @@ namespace Graphics {
     }
 
     void Window::Update() {
-        // Poll for events like keyboard input or mouse movement
-        //glfwPollEvents();
-
         // Swap the color buffer and output it to the screen (double buffering)
         glfwSwapBuffers(_windowPtr);
     }
@@ -98,6 +95,11 @@ namespace Graphics {
         cout << "Setting OpenGL Viewport" << endl;
         glfwGetFramebufferSize(_windowPtr, &_width,  &_height);
         glViewport(0, 0, _width, _height);
+    }
+
+    void Window::PollEvents() {
+        // Poll for events like keyboard input or mouse movement
+        glfwPollEvents();
     }
 }
 
