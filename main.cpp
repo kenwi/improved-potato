@@ -2,10 +2,12 @@
 #include "Graphics/Shader/Shader.h"
 #include "Graphics/Rendering/Renderer.h"
 #include "Graphics/Rendering/Primitives/Shape.h"
+#include "Utils/Timer.h"
 
 int main()
 {
     using namespace std;
+    using namespace chrono;
     using namespace Graphics;
     using namespace Graphics::Shader;
     using namespace Graphics::Rendering;
@@ -16,6 +18,7 @@ int main()
     Window window("Test", 1024, 768);
     Shader::Shader shader;
     Object object;
+    Utils::Timer timer;
 
     cout << "Entering game loop" << endl;
     while(window.Running() && !shader.CompileError) {
@@ -28,6 +31,9 @@ int main()
         glBindVertexArray(0);
 
         window.Update();
+        int fps;
+        if((fps = timer.GetCurrentFPS()) > 0)
+            cout << "FPS = " << fps << endl;
     }
     glDeleteVertexArrays(1, &object.VAO);
     glDeleteBuffers(1, &object.VBO);
