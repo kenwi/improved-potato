@@ -11,7 +11,7 @@ namespace Graphics {
     namespace Shader {
         class Shader {
         private:
-            GLuint _shaderId;
+            //GLuint _shaderId;
 
         public:
             Shader();
