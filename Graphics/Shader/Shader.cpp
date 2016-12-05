@@ -39,12 +39,12 @@ Shader::~Shader() {
 
 }
 
-GLuint Shader::CreateShaderObject(GLenum type) {
+GLuint Shader::CreateShaderObject(const GLenum type) {
     // Create a shader object and return it's id
     return glCreateShader(type);
 }
 
-bool Shader::AttachSourceAndCompile(GLenum shaderId, const GLchar *shaderSource) {
+bool Shader::AttachSourceAndCompile(const GLenum shaderId, const GLchar *shaderSource) {
     // Attach the shader source to the shader object
     glShaderSource(shaderId, 1, &shaderSource, NULL);
 
@@ -59,7 +59,7 @@ bool Shader::AttachSourceAndCompile(GLenum shaderId, const GLchar *shaderSource)
     return false;
 }
 
-bool Shader::LinkShader(GLuint vertexShaderId, GLuint fragmentShaderId) {
+bool Shader::LinkShader(const GLuint vertexShaderId, const GLuint fragmentShaderId) {
     cout << "Linking vertex shader " << vertexShaderId << " and fragment shader " << fragmentShaderId <<  endl;
     // Link the shader
     GLuint shaderProgram = glCreateProgram();
@@ -84,7 +84,7 @@ bool Shader::LinkShader(GLuint vertexShaderId, GLuint fragmentShaderId) {
     return true;
 }
 
-bool Shader::CheckStatus(GLenum status, GLuint shaderId) {
+bool Shader::CheckStatus(const GLenum status, const GLuint shaderId) {
     this->CompileError = false;
     cout << "Checking status = " << status << " for shader = " << shaderId << endl;
     // Check compilation status

@@ -20,10 +20,10 @@ namespace Graphics {
             GLuint ShaderProgram;
 
         private:
-            GLuint CreateShaderObject(GLenum type);
-            bool AttachSourceAndCompile(GLenum shaderId, const GLchar *shaderSource );
-            bool LinkShader(GLuint vertexShaderId, GLuint fragmentShaderId);
-            bool CheckStatus(GLenum status, GLuint shaderId);
+            GLuint CreateShaderObject(const GLenum type);
+            bool AttachSourceAndCompile(const GLenum shaderId, const GLchar *shaderSource );
+            bool LinkShader(const GLuint vertexShaderId, const GLuint fragmentShaderId);
+            bool CheckStatus(const GLenum status, const GLuint shaderId);
         };
     }
 }
