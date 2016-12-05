@@ -8,7 +8,8 @@
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 //##include "GLUS/src/GL/glus.h"
-#include <GL/glus.h>
+
+//#include <GL/glus.h>
 
 
 #include <iostream>
