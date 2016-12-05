@@ -11,7 +11,7 @@ namespace Graphics {
     class Window {
 
     public:
-        int MouseX, MouseY;
+        //int MouseX, MouseY;
 
     private:
         const char *_title;
@@ -25,6 +25,7 @@ namespace Graphics {
         void Update();
         void Terminate();
         void SetOpenGLViewPort();
+        void PollEvents();
 
     private:
         bool Initialize();
