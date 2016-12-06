@@ -12,7 +12,7 @@ namespace Graphics {
             }
 
             Shape::~Shape() {
-                glusShapeDestroyf(&shape);
+               glusShapeDestroyf(&shape);
             }
 
             const GLUSshape& Shape::Get() const {

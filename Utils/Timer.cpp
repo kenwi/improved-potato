@@ -8,7 +8,7 @@ Utils::Timer::Timer() {
     _begin = high_resolution_clock::now();
 }
 
-long Utils::Timer::GetCurrentFPS() {
+__int64 Utils::Timer::GetCurrentFPS() {
     auto _end  = high_resolution_clock::now();
     auto duration = duration_cast<seconds>(_end - _begin).count();
     if(duration > 5) {

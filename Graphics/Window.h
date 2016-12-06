@@ -19,7 +19,7 @@ namespace Graphics {
         GLFWwindow *_windowPtr;
 
     public:
-        Window(const char *title, int height, int width);
+        Window(const char *title, const int height, const int width);
         ~Window();
         bool Running();
         void Update();
