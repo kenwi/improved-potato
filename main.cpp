@@ -15,7 +15,7 @@ int main()
     //using namespace Graphics::Shader;
     using namespace Graphics::Rendering;
     using namespace Graphics::Rendering::Primitives;
-
+	
     Shape shape;
     Renderer renderer;
     Window window("Test", 1024, 768);
