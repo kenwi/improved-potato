@@ -72,6 +72,10 @@
     <LibraryPath>C:\Users\wilken\Source\improved-potato\win32\MSVC\lib;$(LibraryPath)</LibraryPath>
     <SourcePath>C:\Users\wilken\Source\improved-potato\win32\MSVC\include;$(SourcePath)</SourcePath>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LibraryPath>C:\Users\kennwilh\Source\Repos\improved-potato\win32\MSVC\lib;$(LibraryPath)</LibraryPath>
+    <SourcePath>C:\Users\kennwilh\Source\Repos\improved-potato\win32\MSVC\include;$(SourcePath)</SourcePath>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
@@ -88,6 +92,9 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
     </ClCompile>
+    <Link>
+      <AdditionalDependencies>opengl32.lib; glfw3.lib;;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>

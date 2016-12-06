@@ -19,7 +19,7 @@ namespace Utils {
 
     public:
         Timer();
-        long GetCurrentFPS();
+		__int64  GetCurrentFPS();
     };
 }
 

@@ -23,7 +23,7 @@ int main()
     Shader::Shader shader;
     Object object;
     Utils::Timer timer;
-    long fps;
+	__int64  fps;
 
     cout << "Entering game loop" << endl;
     while(window.Running() && !shader.CompileError) {
