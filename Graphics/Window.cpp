@@ -7,7 +7,7 @@ namespace Graphics {
 
     using namespace std;
 
-    Window::Window(const char *title, int width, int height) {
+    Window::Window(const char *title, const int width, const int height) {
         cout << "Calling constructor on Window. Requesting size = "
              << width << "x" << height << " title = " << title  << endl;
 
@@ -28,7 +28,7 @@ namespace Graphics {
 
     bool Window::Initialize() {
         // Use modern approach
-        glewExperimental = true;
+        glewExperimental = GL_TRUE;
         if(!glfwInit()) {
             cout << "Failed to init GLFW" << endl;
             return false;
@@ -46,6 +46,9 @@ namespace Graphics {
         // Enable OpenGL core profile
         cout << "Enabling OpenGL core profile" << endl;
         glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+
+        cout << "Disabling windows resizing" << endl;
+        glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
 
         if(nullptr == (_windowPtr = glfwCreateWindow(_width, _height, _title, nullptr, nullptr))) {
             cout << "Failed to create window" << endl;
@@ -72,13 +75,14 @@ namespace Graphics {
     }
 
     bool Window::Running() {
-        return !glfwWindowShouldClose(_windowPtr);
+        if(glfwWindowShouldClose(_windowPtr)) {
+            cout << "Caught termination singal" << endl;
+            return false;
+        }
+        return true;
     }
 
     void Window::Update() {
-        // Poll for events like keyboard input or mouse movement
-        glfwPollEvents();
-
         // Swap the color buffer and output it to the screen (double buffering)
         glfwSwapBuffers(_windowPtr);
     }
@@ -94,6 +98,11 @@ namespace Graphics {
         cout << "Setting OpenGL Viewport" << endl;
         glfwGetFramebufferSize(_windowPtr, &_width,  &_height);
         glViewport(0, 0, _width, _height);
+    }
+
+    void Window::PollEvents() {
+        // Poll for events like keyboard input or mouse movement
+        glfwPollEvents();
     }
 }
 

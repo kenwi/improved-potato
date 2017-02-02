@@ -63,12 +63,12 @@ Shader::~Shader() {
 
 }
 
-GLuint Shader::CreateShaderObject(GLenum type) {
+GLuint Shader::CreateShaderObject(const GLenum type) {
     // Create a shader object and return it's id
     return glCreateShader(type);
 }
 
-bool Shader::AttachSourceAndCompile(GLenum shaderId, const GLchar *shaderSource) {
+bool Shader::AttachSourceAndCompile(const GLenum shaderId, const GLchar *shaderSource) {
     // Attach the shader source to the shader object
     glShaderSource(shaderId, 1, &shaderSource, NULL);
 
@@ -79,10 +79,11 @@ bool Shader::AttachSourceAndCompile(GLenum shaderId, const GLchar *shaderSource)
         cout << "Status for shader " << shaderId << " is OK" << endl;
         return true;
     }
+    cout << "Status for shader " << shaderId << " is ERROR" << endl;
     return false;
 }
 
-bool Shader::LinkShader(GLuint vertexShaderId, GLuint fragmentShaderId) {
+bool Shader::LinkShader(const GLuint vertexShaderId, const GLuint fragmentShaderId) {
     cout << "Linking vertex shader " << vertexShaderId << " and fragment shader " << fragmentShaderId <<  endl;
     // Link the shader
     GLuint shaderProgram = glCreateProgram();
@@ -90,11 +91,13 @@ bool Shader::LinkShader(GLuint vertexShaderId, GLuint fragmentShaderId) {
     glAttachShader(shaderProgram, fragmentShaderId);
     glLinkProgram(shaderProgram);
 
-    // Check it's status
-    if(CheckStatus(GL_LINK_STATUS, shaderProgram)) {
-        cout << "Status for shader " << shaderProgram << " is OK" << endl;
-        this->ShaderProgram = shaderProgram;
+    cout << "Checking shader program " << shaderProgram << endl;
+    if(!CheckStatus(GL_LINK_STATUS, shaderProgram)) {
+        cout << "Status for shader " << shaderProgram << " is ERROR" << endl;
+        return false;
     }
+    cout << "Status for shader " << shaderProgram << " is OK" << endl;
+    ShaderProgram = shaderProgram;
 
     // Remove shader after it's been linked to the shader program
     cout << "Deleting vertex shader " << vertexShaderId << endl;
@@ -105,7 +108,8 @@ bool Shader::LinkShader(GLuint vertexShaderId, GLuint fragmentShaderId) {
     return true;
 }
 
-bool Shader::CheckStatus(GLenum status, GLuint shaderId) {
+bool Shader::CheckStatus(const GLenum status, const GLuint shaderId) {
+    this->CompileError = false;
     cout << "Checking status = " << status << " for shader = " << shaderId << endl;
     // Check compilation status
     GLint success;
