@@ -19,6 +19,7 @@ int main()
     Object object;
 
     shader.LoadShaders("../SimpleTransform.vertexshader", "../SingleColor.fragmentshader");
+
     // Get a handle for our "MVP" uniform
     GLuint MatrixID = glGetUniformLocation(shader.ShaderProgram, "MVP");
 

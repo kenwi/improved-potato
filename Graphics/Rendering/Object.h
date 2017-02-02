@@ -5,13 +5,12 @@
 #ifndef UNTITLED_OBJECT_H
 #define UNTITLED_OBJECT_H
 
-//#include <iostream>
-
 #include "Renderer.h"
-#include "../ImageReader.h"
 #include "../../libs.h"
+#include "../ImageReader.h"
 
 using namespace std;
+
 namespace Graphics {
     namespace Rendering {
         class Object {

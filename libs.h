@@ -10,8 +10,9 @@
 //##include "GLUS/src/GL/glus.h"
 
 //#include <GL/glus.h
-#include "../GLUS/GLUS/src/GL/glus.h"
+//#include "../GLUS/GLUS/src/GL/glus.h"
 #include <iostream>
+#include <png.h>
 
 #endif //UNTITLED_LIBS_H
 
