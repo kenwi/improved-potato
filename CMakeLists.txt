@@ -1,9 +1,9 @@
-cmake_minimum_required(VERSION 3.6)
+cmake_minimum_required(VERSION 3.5)
 project(improved-potato)
 
 set(CMAKE_CXX_STANDARD 11)
 
-set(SOURCE_FILES main.cpp Graphics/Window.h Graphics/Window.cpp Graphics/Rendering/Renderer.cpp Graphics/Rendering/Renderer.h Graphics/Rendering/Object.h Graphics/Rendering/Primitives/Shape.cpp Graphics/Rendering/Primitives/Shape.h libs.h Graphics/Shader/Shader.cpp Graphics/Shader/Shader.h)
+set(SOURCE_FILES main.cpp Graphics/Window.h Graphics/Window.cpp Graphics/Rendering/Renderer.cpp Graphics/Rendering/Renderer.h Graphics/Rendering/Object.h Graphics/Rendering/Primitives/Shape.cpp Graphics/Rendering/Primitives/Shape.h libs.h Graphics/Shader/Shader.cpp Graphics/Shader/Shader.h Graphics/ImageReader.h Graphics/ImageReader.cpp)
 add_executable(improved-potato ${SOURCE_FILES})
 
 find_package(GLEW REQUIRED)
@@ -11,7 +11,8 @@ if (GLEW_FOUND)
     include_directories(${GLEW_INCLUDE_DIRS})
     link_libraries(${GLEW_LIBRARIES})
 endif()
-target_link_libraries(improved-potato glfw GL ${GLEW_LIBRARIES})
+
+target_link_libraries(improved-potato glfw GL ${GLEW_LIBRARIES} tiff png)
 
 
 #set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${improved-potato_SOURCE_DIR})
