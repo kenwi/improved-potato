@@ -123,7 +123,7 @@ bool Shader::CheckStatus(const GLenum status, const GLuint shaderId) {
     }
     return true;
 }
-
+#include <string>
 GLuint Shader::LoadShaders(const char * vertex_file_path,const char * fragment_file_path)
 {
     // Create the shaders
