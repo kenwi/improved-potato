@@ -14,8 +14,8 @@ namespace Graphics {
             Shape::~Shape() {
                //glusShapeDestroyf(&shape);
             }
-			/*
-            const GLUSshape& Shape::Get() const {
+
+            /*const GLUSshape& Shape::Get() const {
                 return shape;
             }*/
         }

@@ -8,6 +8,9 @@
 #include "../../libs.h"
 #include "Object.h"
 
+#include <png.h>
+png_byte *loadTexture(const string filename, int &width, int &height);
+
 namespace Graphics{
     namespace Rendering {
         class Renderer {
@@ -20,5 +23,6 @@ namespace Graphics{
         };
     }
 }
+
 
 #endif //UNTITLED_RENDERER_H

@@ -35,10 +35,13 @@ namespace Graphics {
         }
         cout << "Initialized GLFW" << endl;
 
+        glfwWindowHint(GLFW_SAMPLES, 4);
         // Make sure we're using >=OpenGL 3.3
         cout << "Requesting OpenGL context version above 3.3" << endl;
         glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
         glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+
+        glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 
         // Enable OpenGL core profile
         cout << "Enabling OpenGL core profile" << endl;
