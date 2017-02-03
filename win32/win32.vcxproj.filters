@@ -51,6 +51,9 @@
     <ClInclude Include="..\Utils\Timer.h">
       <Filter>Source Files\Utils</Filter>
     </ClInclude>
+    <ClInclude Include="..\Graphics\ImageReader.h">
+      <Filter>Source Files\Graphics</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Graphics\Rendering\Renderer.cpp">
@@ -70,6 +73,9 @@
     </ClCompile>
     <ClCompile Include="..\Utils\Timer.cpp">
       <Filter>Source Files\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Graphics\ImageReader.cpp">
+      <Filter>Source Files\Graphics</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

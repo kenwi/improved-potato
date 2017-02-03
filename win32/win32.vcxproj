@@ -124,6 +124,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="..\Graphics\ImageReader.h" />
     <ClInclude Include="..\Graphics\Rendering\Object.h" />
     <ClInclude Include="..\Graphics\Rendering\Primitives\Shape.h" />
     <ClInclude Include="..\Graphics\Rendering\Renderer.h" />
@@ -133,6 +134,7 @@
     <ClInclude Include="..\Utils\Timer.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\Graphics\ImageReader.cpp" />
     <ClCompile Include="..\Graphics\Rendering\Primitives\Shape.cpp" />
     <ClCompile Include="..\Graphics\Rendering\Renderer.cpp" />
     <ClCompile Include="..\Graphics\Shader\Shader.cpp" />

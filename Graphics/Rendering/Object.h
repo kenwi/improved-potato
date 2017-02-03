@@ -31,8 +31,8 @@ namespace Graphics {
                 imageReader.ReadPNG("../Capture.PNG");
 
                 //GLfloat vertices[];
+				/*
 				auto vertices = new GLfloat *[imageReader.width * 3];
-				this->VerticesC = sizeof(vertices)/sizeof(GLfloat)/3;
 
                 png_bytep row = imageReader.rowPtrs[0];
                 for(x=0; x<imageReader.width; x++) {
@@ -45,7 +45,17 @@ namespace Graphics {
                     vertices[x] = new GLfloat[r/255.f];
                     vertices[x+1] = new GLfloat[g/255.f];
                     vertices[x+2] = new GLfloat[b/255.f];
-                }
+                }*/
+				GLfloat vertices[] = {
+					-0.5f, -0.5f, 0.0f, // Left
+					0.5f, -0.5f, 0.0f, // Right
+					0.0f,  0.5f, 0.0f,  // Top
+					0.0f,  -1.0f, 0.0f,
+					1.0f,  -1.0f, 0.0f,
+					1.1f,  -1.4f, 1.0f,
+					1.0f,  -1.2f, -1.0f
+				};
+				this->VerticesC = sizeof(vertices) / sizeof(GLfloat) / 3;
 
                 // Generate vertex array object
                 glGenVertexArrays(1, &VAO);
