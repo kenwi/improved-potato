@@ -16,11 +16,12 @@ namespace Graphics {
         class Object {
         private:
             ImageReader imageReader;
+            GLfloat *vertices;
 
         public:
             GLuint VAO;
             GLuint VBO;
-            GLuint VerticesC;
+            GLint VerticesC;
 
         public:
             Object() {//: VAO(vao), IndicesC(vertexCount) {
@@ -29,20 +30,24 @@ namespace Graphics {
                 int x, y;
 
                 imageReader.ReadPNG("../Capture.PNG");
-                GLfloat vertices[imageReader.width*3];
-                this->VerticesC = sizeof(vertices)/sizeof(GLfloat)/3;
+                imageReader.height /= 10;
 
-                png_bytep row = imageReader.rowPtrs[0];
-                for(x=0; x<imageReader.width; x++) {
-                    png_byte *ptr = &(row[x*4]);
+                this->vertices = new GLfloat[imageReader.height*imageReader.width*3];
+                this->VerticesC = imageReader.width*imageReader.height;
 
-                    GLfloat r = ptr[0];
-                    GLfloat g = ptr[1];
-                    GLfloat b = ptr[2];
+                for(y=0; y<imageReader.height; y++) {
+                    png_bytep row = imageReader.rowPtrs[y];
+                    for(x=0; x<imageReader.width; x++) {
+                        png_byte *ptr = &(row[x*4]);
 
-                    vertices[x] = r/255.f;
-                    vertices[x+1] = g/255.f;
-                    vertices[x+2] = b/255.f;
+                        GLfloat r = ptr[0];
+                        GLfloat g = ptr[1];
+                        GLfloat b = ptr[2];
+
+                        vertices[y*x] = r/255.f;
+                        vertices[y*x+1] = g/255.f;
+                        vertices[y*x+2] = b/255.f;
+                    }
                 }
 
                 // Generate vertex array object
@@ -53,7 +58,7 @@ namespace Graphics {
                 glBindVertexArray(VAO);
                 // Set vertex buffer
                 glBindBuffer(GL_ARRAY_BUFFER, VBO);
-                glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+                glBufferData(GL_ARRAY_BUFFER, this->VerticesC*sizeof(GLfloat), vertices, GL_STATIC_DRAW);
                 // Set attribute pointers
                 glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(GLfloat), (GLvoid*)0);
                 glEnableVertexAttribArray(0);
@@ -62,6 +67,17 @@ namespace Graphics {
                 glBindBuffer(GL_ARRAY_BUFFER, 0);
                 // Unbind VAO (it's always a good thing to unbind any buffer/array to prevent strange bugs)
                 glBindVertexArray(0);
+            }
+
+            ~Object() {
+                cout << "Freeing memory" << endl;
+                delete [] this->vertices;
+                this->vertices = nullptr;
+                this->VerticesC = 0;
+
+                cout << "Deleting buffers" << endl;
+                glDeleteVertexArrays(1, &VAO);
+                glDeleteBuffers(1, &VBO);
             }
         };
     }
@@ -102,7 +118,6 @@ for(y=0; y<1; y++) {
         //       x, y, ptr[0], ptr[1], ptr[2], ptr[3]);
     }
 }*/
-
 //VerticesC = index/3;
 
 

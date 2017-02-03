@@ -2,9 +2,10 @@
 #include "Graphics/Shader/Shader.h"
 #include "Graphics/Rendering/Renderer.h"
 #include "Graphics/Rendering/Primitives/Shape.h"
-#include "Graphics/ImageReader.h"
+
 #include <glm/gtc/quaternion.hpp>
 #include <glm/gtx/transform.hpp>
+
 
 int main()
 {
@@ -34,13 +35,20 @@ int main()
             glm::vec3(0,0,0), // and looks at the origin
             glm::vec3(0,1,0)  // Head is up (set to 0,-1,0 to look upside-down)
     );
+
     // Model matrix : an identity matrix (model will be at the origin)
     glm::mat4 Model      = glm::mat4(1.0f);
+
     // Our ModelViewProjection : multiplication of our 3 matrices
     glm::mat4 MVP        = Projection * View * Model; // Remember, matrix multiplication is the other way around
 
     while(window.Running() && !shader.CompileError) {
+        window.PollEvents();
         renderer.Clear();
+
+        Model = glm::rotate(Model, 0.01f, vec3(0.f, 1.f, 0.f));
+
+        MVP = Projection * View * Model;
 
         glUseProgram(shader.ShaderProgram);
         glUniformMatrix4fv(MatrixID, 1, GL_FALSE, &MVP[0][0]);
@@ -52,7 +60,6 @@ int main()
 
         window.Update();
     }
-    glDeleteVertexArrays(1, &object.VAO);
-    glDeleteBuffers(1, &object.VBO);
+    cout << "End" << endl;
     return 0;
 }
