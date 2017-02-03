@@ -4,12 +4,14 @@
 
 #include "ImageReader.h"
 
-#include <unistd.h>
+//#include <unistd.h>
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
 #include <stdarg.h>
 #include <iostream>
+
+#define _CRT_SECURE_NO_WARNINGS 1
 
 void abort_(const char * s, ...)
 {
@@ -22,15 +24,23 @@ void abort_(const char * s, ...)
 }
 
 namespace Graphics {
-    ImageReader::ImageReader() {
+
+
+	ImageReader::ImageReader() {
 
     }
 
     void ImageReader::ReadPNG(const char *filename) {
         png_byte header[8];
 
-        FILE *fp = fopen(filename, "rb");
-        if(!fp) {
+		FILE *fp;
+		errno_t err = fopen_s(&fp, filename, "rb");
+		if (err != 0) {
+			abort_("File could not be opened.");
+
+		}
+
+		if(!fp) {
             abort_("File could not be opened.");
         }
 

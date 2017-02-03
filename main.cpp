@@ -3,6 +3,8 @@
 #include "Graphics/Rendering/Renderer.h"
 #include "Graphics/Rendering/Primitives/Shape.h"
 
+#include "Graphics/ImageReader.h"
+
 #include <glm/gtc/quaternion.hpp>
 #include <glm/gtx/transform.hpp>
 

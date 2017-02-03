@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="packages\GLMathematics.0.9.5.4\build\native\GLMathematics.props" Condition="Exists('packages\GLMathematics.0.9.5.4\build\native\GLMathematics.props')" />
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
       <Configuration>Debug</Configuration>
@@ -69,7 +70,7 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <LibraryPath>C:\Users\kennwilh\Source\Repos\improved-potato\win32\MSVC\lib;C:\Users\kennwilh\Source\Repos\GLUS\GLUS\Debug;$(LibraryPath)</LibraryPath>
+    <LibraryPath>C:\Users\kennwilh\Source\Repos\improved-potato\win32\MSVC\lib;C:\Users\kennwilh\Source\Repos\GLUS\GLUS\Debug;win32\MSVC\lib;C:\Users\wilken\Source\improved-potato\win32\MSVC\lib;C:\Users\wilken\Source\improved-potato\win32\packages\libpng.redist.1.6.28.1\build\native\bin\Win32\v140\dynamic\Debug;C:\Users\wilken\Source\improved-potato\win32\packages\libpng.1.6.28.1\build\native\lib\Win32\v140\dynamic\Debug;$(LibraryPath)</LibraryPath>
     <SourcePath>C:\Users\wilken\Source\improved-potato\win32\MSVC\include;$(SourcePath)</SourcePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -83,7 +84,7 @@
       <SDLCheck>true</SDLCheck>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>GLUS.lib;glfw3.lib; opengl32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>libpng16.lib;glfw3.lib; opengl32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -123,6 +124,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="..\Graphics\ImageReader.h" />
     <ClInclude Include="..\Graphics\Rendering\Object.h" />
     <ClInclude Include="..\Graphics\Rendering\Primitives\Shape.h" />
     <ClInclude Include="..\Graphics\Rendering\Renderer.h" />
@@ -132,6 +134,7 @@
     <ClInclude Include="..\Utils\Timer.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\Graphics\ImageReader.cpp" />
     <ClCompile Include="..\Graphics\Rendering\Primitives\Shape.cpp" />
     <ClCompile Include="..\Graphics\Rendering\Renderer.cpp" />
     <ClCompile Include="..\Graphics\Shader\Shader.cpp" />
@@ -142,15 +145,14 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\GLUS\GLUS\GLUS.vcxproj">
-      <Project>{77e075dd-f2e6-3e01-80f2-d3f16118a995}</Project>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
     <Import Project="packages\nupengl.core.redist.0.1.0.1\build\native\nupengl.core.redist.targets" Condition="Exists('packages\nupengl.core.redist.0.1.0.1\build\native\nupengl.core.redist.targets')" />
     <Import Project="packages\nupengl.core.0.1.0.1\build\native\nupengl.core.targets" Condition="Exists('packages\nupengl.core.0.1.0.1\build\native\nupengl.core.targets')" />
+    <Import Project="packages\libpng.redist.1.6.28.1\build\native\libpng.redist.targets" Condition="Exists('packages\libpng.redist.1.6.28.1\build\native\libpng.redist.targets')" />
+    <Import Project="packages\zlib.v120.windesktop.msvcstl.dyn.rt-dyn.1.2.8.8\build\native\zlib.v120.windesktop.msvcstl.dyn.rt-dyn.targets" Condition="Exists('packages\zlib.v120.windesktop.msvcstl.dyn.rt-dyn.1.2.8.8\build\native\zlib.v120.windesktop.msvcstl.dyn.rt-dyn.targets')" />
+    <Import Project="packages\zlib.v140.windesktop.msvcstl.dyn.rt-dyn.1.2.8.8\build\native\zlib.v140.windesktop.msvcstl.dyn.rt-dyn.targets" Condition="Exists('packages\zlib.v140.windesktop.msvcstl.dyn.rt-dyn.1.2.8.8\build\native\zlib.v140.windesktop.msvcstl.dyn.rt-dyn.targets')" />
+    <Import Project="packages\libpng.1.6.28.1\build\native\libpng.targets" Condition="Exists('packages\libpng.1.6.28.1\build\native\libpng.targets')" />
   </ImportGroup>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
@@ -158,5 +160,10 @@
     </PropertyGroup>
     <Error Condition="!Exists('packages\nupengl.core.redist.0.1.0.1\build\native\nupengl.core.redist.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\nupengl.core.redist.0.1.0.1\build\native\nupengl.core.redist.targets'))" />
     <Error Condition="!Exists('packages\nupengl.core.0.1.0.1\build\native\nupengl.core.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\nupengl.core.0.1.0.1\build\native\nupengl.core.targets'))" />
+    <Error Condition="!Exists('packages\libpng.redist.1.6.28.1\build\native\libpng.redist.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\libpng.redist.1.6.28.1\build\native\libpng.redist.targets'))" />
+    <Error Condition="!Exists('packages\zlib.v120.windesktop.msvcstl.dyn.rt-dyn.1.2.8.8\build\native\zlib.v120.windesktop.msvcstl.dyn.rt-dyn.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\zlib.v120.windesktop.msvcstl.dyn.rt-dyn.1.2.8.8\build\native\zlib.v120.windesktop.msvcstl.dyn.rt-dyn.targets'))" />
+    <Error Condition="!Exists('packages\zlib.v140.windesktop.msvcstl.dyn.rt-dyn.1.2.8.8\build\native\zlib.v140.windesktop.msvcstl.dyn.rt-dyn.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\zlib.v140.windesktop.msvcstl.dyn.rt-dyn.1.2.8.8\build\native\zlib.v140.windesktop.msvcstl.dyn.rt-dyn.targets'))" />
+    <Error Condition="!Exists('packages\libpng.1.6.28.1\build\native\libpng.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\libpng.1.6.28.1\build\native\libpng.targets'))" />
+    <Error Condition="!Exists('packages\GLMathematics.0.9.5.4\build\native\GLMathematics.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\GLMathematics.0.9.5.4\build\native\GLMathematics.props'))" />
   </Target>
 </Project>
