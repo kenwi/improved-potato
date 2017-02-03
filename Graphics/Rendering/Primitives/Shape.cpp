@@ -8,16 +8,16 @@ namespace Graphics {
     namespace Rendering {
         namespace Primitives {
             Shape::Shape() {
-                memset(&shape, 0, sizeof(GLUSshape));
+                //memset(&shape, 0, sizeof(GLUSshape));
             }
 
             Shape::~Shape() {
-               glusShapeDestroyf(&shape);
+               //glusShapeDestroyf(&shape);
             }
-
+			/*
             const GLUSshape& Shape::Get() const {
                 return shape;
-            }
+            }*/
         }
     }
 }
