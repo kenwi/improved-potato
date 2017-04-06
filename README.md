@@ -3,3 +3,4 @@ The goal is to plot RGB pixel values in a 3 dimensional volume matrix to help wi
 
 Currently I'm using heightmaps like these:
 ![alt tag](https://raw.githubusercontent.com/kenwi/improved-potato/master/h_color.png)
+![Screenshot](h_color.png)
