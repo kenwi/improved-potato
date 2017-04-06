@@ -1,5 +1,5 @@
 # improved-potato
-The goal is to plot RGB pixel values in a 3 dimensional volume matrix to help with interpreting heightmap values to achieve better resolution in terrain generation.
+The goal is to plot RGB pixel values in a 3 dimensional volume matrix to help with interpolating heightmap values to achieve better resolution in terrain generation.
 
 I have already plotted different kinds of images in unreal engine.
 
